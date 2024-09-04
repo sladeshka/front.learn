@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Упражнение 4.1</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        canvas {
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="rainbowCanvas" width="500" height="500"></canvas>
+    <script>
+        const canvas = document.getElementById('rainbowCanvas');
+        const ctx = canvas.getContext('2d');
+        const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        gradient.addColorStop(0, 'red');
+        gradient.addColorStop(0.14, 'orange');
+        gradient.addColorStop(0.28, 'yellow');
+        gradient.addColorStop(0.43, 'green');
+        gradient.addColorStop(0.57, 'blue');
+        gradient.addColorStop(0.71, 'indigo');
+        gradient.addColorStop(0.86, 'violet');
+        gradient.addColorStop(1, 'red');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    </script>
+</body>
+</html>
