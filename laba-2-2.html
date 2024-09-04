@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Упражнение 2.2</title>
+    <style>
+        #change {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <p id="change">Изменяемый текст</p>
+    <a href="#" id="link">Наведи курсор сюда</a>
+
+    <script>
+        function ChangeStyle() {
+            const element = document.getElementById('change');
+            element.style.color = 'red';
+            element.style.fontSize = '20px';
+            element.style.textDecoration = 'underline';
+            element.style.fontWeight = 'bold';
+        }
+
+        const link = document.getElementById('link');
+        link.addEventListener('mouseover', ChangeStyle);
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Упражнение 2.3</title>
+</head>
+<body>
+    <a href="#" id="newWindowLink">Новое окно</a>
+
+    <script>
+        const link = document.getElementById('newWindowLink');
+
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            window.open('https://www.google.com/', '_blank', 'width=300,height=400,menubar=yes,toolbar=yes,location=yes,scrollbars=yes,resizable=yes,status=yes');
+        });
+    </script>
+</body>
+</html>
