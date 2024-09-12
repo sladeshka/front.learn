@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Упражнение 6.2</title>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            (function () {
+                "use strict";
+                var button = document.getElementById('button');
+                button.addEventListener('click', getLocation);
+                function getLocation() {
+                    const output = document.getElementById('output');
+                    if (!navigator.geolocation) {
+                        output.innerHTML = "<p>Geolocation API не поддерживается вашим браузером.</p>";
+                        return;
+                    }
+                    const options = {
+                        enableHighAccuracy: true,
+                        timeout: 5000,
+                        maximumAge: 0
+                    };
+                    navigator.geolocation.getCurrentPosition(success, error, options);
+
+                    function success(position) {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        const accuracy = position.coords.accuracy;
+
+                        output.innerHTML = `
+                            <p>Широта: ${latitude}°</p>
+                            <p>Долгота: ${longitude}°</p>
+                            <p>Точность: ${accuracy} метров</p>
+                        `;
+                    }
+
+                    function error(err) {
+                        switch(err.code) {
+                            case err.PERMISSION_DENIED:
+                                output.innerHTML = "<p>Пользователь отклонил запрос на определение местоположения.</p>";
+                                break;
+                            case err.POSITION_UNAVAILABLE:
+                                output.innerHTML = "<p>Информация о местоположении недоступна.</p>";
+                                break;
+                            case err.TIMEOUT:
+                                output.innerHTML = "<p>Время ожидания истекло.</p>";
+                                break;
+                            default:
+                                output.innerHTML = "<p>Произошла неизвестная ошибка.</p>";
+                                break;
+                        }
+                    }
+                }
+            })();
+        });
+    </script>
+</head>
+<body>
+    <h1>Определение местоположения с помощью Geolocation API</h1>
+    <button id="button">Получить местоположение</button>
+    <div id="output"></div>
+</body>
+</html>

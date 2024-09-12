@@ -14,16 +14,19 @@
     <img id="image" src="images/apple.jpg" alt="Apple" width="200">
 
     <script>
-        const image = document.getElementById('image');
-        let isEnlarged = false;
-        image.addEventListener('click', function() {
-            if (isEnlarged) {
-                image.style.transform = 'scale(1)';
-            } else {
-                image.style.transform = 'scale(2)';
-            }
-            isEnlarged = !isEnlarged;
-        });
+        (function () {
+            "use strict";
+            const image = document.getElementById('image');
+            let isEnlarged = false;
+            image.addEventListener('click', function() {
+                if (isEnlarged) {
+                    image.style.transform = 'scale(1)';
+                } else {
+                    image.style.transform = 'scale(2)';
+                }
+                isEnlarged = !isEnlarged;
+            });
+        })();
     </script>
 </body>
 </html>

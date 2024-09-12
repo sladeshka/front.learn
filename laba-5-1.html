@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Форма регистрации</title>
+    <title>Упражнение 5.1</title>
     <style>
         .valid {
             border: 2px solid green;
@@ -52,36 +52,39 @@
 </form>
 
 <script>
-    const form = document.getElementById('registrationForm');
+    (function () {
+        "use strict";
+        const form = document.getElementById('registrationForm');
 
-    form.addEventListener('input', function(event) {
-        const target = event.target;
-        const imageContainer = document.getElementById(target.id + 'Image');
+        form.addEventListener('input', function(event) {
+            const target = event.target;
+            const imageContainer = document.getElementById(target.id + 'Image');
 
-        if (target.validity.valid) {
-            target.classList.remove('invalid');
-            target.classList.add('valid');
-            imageContainer.style.backgroundImage = "url('images/yes.jpeg')";
-        } else {
-            target.classList.remove('valid');
-            target.classList.add('invalid');
-            imageContainer.style.backgroundImage = "url('images/no.jpeg')";
-        }
-    });
+            if (target.validity.valid) {
+                target.classList.remove('invalid');
+                target.classList.add('valid');
+                imageContainer.style.backgroundImage = "url('images/yes.jpeg')";
+            } else {
+                target.classList.remove('valid');
+                target.classList.add('invalid');
+                imageContainer.style.backgroundImage = "url('images/no.jpeg')";
+            }
+        });
 
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        if (form.checkValidity()) {
-            alert('Форма успешно отправлена!');
-            form.reset();
-            document.querySelectorAll('.image-container').forEach(container => {
-                container.style.backgroundImage = '';
-                container.previousElementSibling.classList.remove('valid', 'invalid');
-            });
-        } else {
-            alert('Пожалуйста, заполните все обязательные поля.');
-        }
-    });
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            if (form.checkValidity()) {
+                alert('Форма успешно отправлена!');
+                form.reset();
+                document.querySelectorAll('.image-container').forEach(container => {
+                    container.style.backgroundImage = '';
+                    container.previousElementSibling.classList.remove('valid', 'invalid');
+                });
+            } else {
+                alert('Пожалуйста, заполните все обязательные поля.');
+            }
+        });
+    })();
 </script>
 
 </body>

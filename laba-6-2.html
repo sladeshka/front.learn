@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Упражнение 6.2</title>
+</head>
+<body>
+    <h1>History API Example</h1>
+    <ul>
+        <li><a href="#" id="link1">Страница 1</a></li>
+        <li><a href="#" id="link2">Страница 2</a></li>
+        <li><a href="#" id="link3">Страница 3</a></li>
+        <li><a href="#" id="link4">Страница 4</a></li>
+        <li><a href="#" id="link5">Страница 5</a></li>
+    </ul>
+    <div id="content">Content will change here.</div>
+
+    <script>
+        (function () {
+        "use strict";
+            const { protocol, hostname, port } = window.location;
+            const baseUrl = `${protocol}//${hostname}${port ? `:${port}` : ''}`;
+
+            function changeState(url, content) {
+                history.pushState({ content }, '', url);
+                document.getElementById('content').innerText = content;
+            }
+
+            document.getElementById('link1').addEventListener('click', (e) => {
+                e.preventDefault();
+                changeState(`${baseUrl}/page1`, 'Страница 1');
+            });
+
+            document.getElementById('link2').addEventListener('click', (e) => {
+                e.preventDefault();
+                changeState(`${baseUrl}/page2`, 'Страница 2');
+            });
+
+            document.getElementById('link3').addEventListener('click', (e) => {
+                e.preventDefault();
+                changeState(`${baseUrl}/page3`, 'Страница 3');
+            });
+
+            document.getElementById('link4').addEventListener('click', (e) => {
+                e.preventDefault();
+                changeState(`${baseUrl}/page4`, 'Страница 4');
+            });
+
+            document.getElementById('link5').addEventListener('click', (e) => {
+                e.preventDefault();
+                changeState(`${baseUrl}/page5`, 'Страница 5');
+            });
+
+            window.addEventListener('popstate', (event) => {
+                if (event.state && event.state.content) {
+                    document.getElementById('content').innerText = event.state.content;
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

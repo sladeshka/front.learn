@@ -15,16 +15,19 @@
     <a href="#" id="link">Наведи курсор сюда</a>
 
     <script>
-        function ChangeStyle() {
-            const element = document.getElementById('change');
-            element.style.color = 'red';
-            element.style.fontSize = '20px';
-            element.style.textDecoration = 'underline';
-            element.style.fontWeight = 'bold';
-        }
+        (function () {
+            "use strict";
+            function ChangeStyle() {
+                const element = document.getElementById('change');
+                element.style.color = 'red';
+                element.style.fontSize = '20px';
+                element.style.textDecoration = 'underline';
+                element.style.fontWeight = 'bold';
+            }
 
-        const link = document.getElementById('link');
-        link.addEventListener('mouseover', ChangeStyle);
+            const link = document.getElementById('link');
+            link.addEventListener('mouseover', ChangeStyle);
+        })();
     </script>
 </body>
 </html>

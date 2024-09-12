@@ -5,34 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Упражнение 2.4</title>
     <script>
-        function validateForm() {
-            var login = document.forms["userForm"]["login"].value;
-            var password = document.forms["userForm"]["password"].value;
-            var confirmPassword = document.forms["userForm"]["confirmPassword"].value;
-            var email = document.forms["userForm"]["email"].value;
-            if (login === "" || password === "" || confirmPassword === "" || email === "") {
-                alert("Пожалуйста, заполните все поля.");
-                return false;
-            }
-            if (password.length < 6 || password.length > 12) {
-                alert("Пароль должен содержать от 6 до 12 символов.");
-                return false;
-            }
-            if (password !== confirmPassword) {
-                alert("Пароли не совпадают.");
-                return false;
-            }
-            if (email.indexOf("@") === -1) {
-                alert("Электронный адрес должен содержать символ '@'.");
-                return false;
-            }
-            return true;
-        }
+        window.addEventListener('DOMContentLoaded', () => {
+            (function () {
+                "use strict";
+                var userForm = document.getElementById('userForm');
+                userForm.addEventListener('submit', validateForm);
+                function validateForm() {
+                    var login = document.forms["userForm"]["login"].value;
+                    var password = document.forms["userForm"]["password"].value;
+                    var confirmPassword = document.forms["userForm"]["confirmPassword"].value;
+                    var email = document.forms["userForm"]["email"].value;
+                    if (login === "" || password === "" || confirmPassword === "" || email === "") {
+                        alert("Пожалуйста, заполните все поля.");
+                        return false;
+                    }
+                    if (password.length < 6 || password.length > 12) {
+                        alert("Пароль должен содержать от 6 до 12 символов.");
+                        return false;
+                    }
+                    if (password !== confirmPassword) {
+                        alert("Пароли не совпадают.");
+                        return false;
+                    }
+                    if (email.indexOf("@") === -1) {
+                        alert("Электронный адрес должен содержать символ '@'.");
+                        return false;
+                    }
+                    return true;
+                }
+            })();
+        });
     </script>
 </head>
 <body>
     <h1>Регистрация пользователя</h1>
-    <form name="userForm" method="POST" action="" onsubmit="return validateForm()">
+    <form name="userForm" id="userForm" method="POST" action="">
         <label for="login">Логин:</label>
         <input type="text" id="login" name="login"><br><br>
 
