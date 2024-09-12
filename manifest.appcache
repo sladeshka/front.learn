@@ -1,0 +1,9 @@
+CACHE MANIFEST
+# Версия 1.0
+
+CACHE:
+index.html
+styles.css
+
+NETWORK:
+*

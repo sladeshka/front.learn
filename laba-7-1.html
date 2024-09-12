@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru" manifest="manifest.appcache">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Упражнение 7.1</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Демонстрация оффлайн-приложения</h1>
+    <p>Это приложение кэширует ресурсы для работы в оффлайн-режиме.</p>
+    <p id="status"></p>
+    <script>
+        if ('applicationCache' in window) {
+            const appCache = window.applicationCache;
+
+            appCache.addEventListener('updateready', function() {
+                if (appCache.status === appCache.UPDATEREADY) {
+                    appCache.swapCache();
+                    document.getElementById('status').innerText = 'Кэш обновлён. Перезагрузите страницу.';
+                }
+            });
+
+            appCache.addEventListener('error', function() {
+                document.getElementById('status').innerText = 'Ошибка кэширования.';
+            });
+        } else {
+            document.getElementById('status').innerText = 'Ваш браузер не поддерживает Offline Application API.';
+        }
+    </script>
+</body>
+</html>

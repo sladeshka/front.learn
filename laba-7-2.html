@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Упражнение 7.2</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #messages { border: 1px solid #ccc; height: 200px; overflow-y: scroll; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h1>WebSocket Chat</h1>
+    <div id="messages"></div>
+    <input id="messageInput" type="text" placeholder="Введите сообщение" />
+    <button id="sendButton">Отправить</button>
+
+    <script>
+        const ws = new WebSocket('ws://localhost:8080');
+
+        ws.onopen = () => {
+            console.log('Подключено к серверу');
+        };
+
+        ws.onmessage = (event) => {
+            const messagesDiv = document.getElementById('messages');
+            messagesDiv.innerHTML += `<div>${event.data}</div>`;
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        };
+
+        document.getElementById('sendButton').onclick = () => {
+            const input = document.getElementById('messageInput');
+            const message = input.value;
+            ws.send(message);
+            input.value = '';
+        };
+    </script>
+</body>
+</html>
