@@ -7,9 +7,9 @@ window.addEventListener('DOMContentLoaded', () => {
             contactForm.addEventListener('submit', function(event) {
                 event.preventDefault();
 
-                var name = document.getElementById('name') ? document.getElementById('name').value : '';
-                var email = document.getElementById('email') ? document.getElementById('email').value : '';
-                var message = document.getElementById('message') ? document.getElementById('message').value : '';
+                var name = getElementValueById('name');
+                var email = getElementValueById('email');
+                var message = getElementValueById('message');
 
                 var contacts = JSON.parse(localStorage.getItem('contacts')) || [];
                 contacts.push({ name, email, message });
@@ -18,6 +18,11 @@ window.addEventListener('DOMContentLoaded', () => {
                 contactForm.reset();
                 displayContacts();
             });
+
+            function getElementValueById(id) {
+                var element = document.getElementById(id);
+                return element ? element.value : '';
+            }
 
             function displayContacts() {
                 contactsList.innerHTML = '';
